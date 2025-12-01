@@ -20,7 +20,6 @@ interface Question {
   options: Option[];
 }
 
-const animals: Animal[] = ["cat", "dog", "fox", "hamster", "horse"];
 
 const rawQuestions: Question[] = [
   {
@@ -216,7 +215,7 @@ export default function Quiz() {
       </div>
       {feedback && <p className="mt-2">{feedback}</p>}
       {selectedOption && (
-        <Button variant="primary" onClick={handleNext} className="mt-4">
+        <Button variant="default" onClick={handleNext} className="mt-4">
           {currentIndex + 1 < questions.length ? "Next" : "See Result"}
         </Button>
       )}
