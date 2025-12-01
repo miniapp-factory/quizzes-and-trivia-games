@@ -23,6 +23,7 @@ interface Question {
 
 const rawQuestions: Question[] = [
   {
+    category: "Science",
     text: "What type of animal do you prefer for a pet?",
     options: [
       { text: "Cat", animal: "cat", isCorrect: true },
@@ -33,6 +34,7 @@ const rawQuestions: Question[] = [
     ],
   },
   {
+    category: "Math",
     text: "Which animal do you think is the most independent?",
     options: [
       { text: "Cat", animal: "cat", isCorrect: true },
@@ -43,6 +45,7 @@ const rawQuestions: Question[] = [
     ],
   },
   {
+    category: "History",
     text: "Which animal would you choose for a quick getaway?",
     options: [
       { text: "Cat", animal: "cat", isCorrect: false },
@@ -53,6 +56,7 @@ const rawQuestions: Question[] = [
     ],
   },
   {
+    category: "Science",
     text: "Which animal do you think is the most energetic?",
     options: [
       { text: "Cat", animal: "cat", isCorrect: false },
@@ -63,6 +67,7 @@ const rawQuestions: Question[] = [
     ],
   },
   {
+    category: "Math",
     text: "Which animal would you prefer for a long ride?",
     options: [
       { text: "Cat", animal: "cat", isCorrect: false },
@@ -96,15 +101,22 @@ export default function Quiz() {
   });
   const [showResult, setShowResult] = useState<boolean>(false);
   const [selectedOption, setSelectedOption] = useState<Option | null>(null);
+  const [emoji, setEmoji] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const categories = ["Science", "Math", "History"];
+  const correctSound = new Audio('/correct.mp3');
+  const wrongSound = new Audio('/wrong.mp3');
   const [feedback, setFeedback] = useState<string>("");
 
   useEffect(() => {
-    const shuffled = shuffleArray(rawQuestions).map((q) => ({
+    if (!selectedCategory) return;
+    const filtered = rawQuestions.filter((q) => q.category === selectedCategory);
+    const shuffled = shuffleArray(filtered).map((q) => ({
       ...q,
       options: shuffleArray(q.options),
     }));
     setQuestions(shuffled);
-  }, []);
+  }, [selectedCategory]);
 
   const handleOptionSelect = (option: Option) => {
     if (selectedOption) return;
@@ -116,8 +128,12 @@ export default function Quiz() {
         [option.animal]: prev[option.animal] + 1,
       }));
       setFeedback("Correct!");
+      correctSound.play();
+      setEmoji("🎉");
     } else {
       setFeedback("Incorrect!");
+      wrongSound.play();
+      setEmoji("😞");
     }
   };
 
@@ -159,6 +175,20 @@ export default function Quiz() {
     return candidates[0];
   };
 
+  if (!selectedCategory) {
+    return (
+      <div className="flex flex-col items-center gap-4">
+        <h2 className="text-xl font-semibold">Select a Category</h2>
+        <div className="flex gap-2">
+          {categories.map((cat) => (
+            <Button key={cat} onClick={() => setSelectedCategory(cat)}>
+              {cat}
+            </Button>
+          ))}
+        </div>
+      </div>
+    );
+  }
   if (questions.length === 0) {
     return <div>Loading...</div>;
   }
@@ -214,6 +244,7 @@ export default function Quiz() {
         ))}
       </div>
       {feedback && <p className="mt-2">{feedback}</p>}
+      {emoji && <p className="mt-2 text-4xl">{emoji}</p>}
       {selectedOption && (
         <Button variant="default" onClick={handleNext} className="mt-4">
           {currentIndex + 1 < questions.length ? "Next" : "See Result"}
