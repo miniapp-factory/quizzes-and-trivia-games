@@ -1,0 +1,68 @@
+
+# 2025-12-01 06:26:23.186376
++Code the following app
++```
++A quiz that allows someone to find out which animal (cat, dog, fox, hamster, horse) they are most similar to by answering 5 multiple choice questions and be able to share result. Generate an image for each animal in a cute cartoon vector style and display it on the result page. Allow the user to retake the quiz as many times as they want. Write the questions and answers yourself. Randomize the 
++order of the answers for each question.
++
++Place the quiz on the home page.
++
++Randomized Questions (shuffle every time)
++
++– Questions will appear in random order
++– Options will also randomize
++Categories / Difficulty
++
++– Users can choose topics (e.g., Science,  Math, History)
++Score System
++
++– Track correct answers
++– Show final score and feedback
++
++✔ Timer (optional)
++
++– Countdown per question
++Clean UI
++
++– Buttons
++– Cards
++– Progress bar
++– Show correct/incorrect answers
++This the structure of my app 
++```
++
++Generate an app logo and update the app metadata title and description.
+
+# 2025-12-01 06:26:23.186750
++Code the following app
++```
++A quiz that allows someone to find out which animal (cat, dog, fox, hamster, horse) they are most similar to by answering 5 multiple choice questions and be able to share result. Generate an image for each animal in a cute cartoon vector style and display it on the result page. Allow the user to retake the quiz as many times as they want. Write the questions and answers yourself. Randomize the 
++order of the answers for each question.
++
++Place the quiz on the home page.
++
++Randomized Questions (shuffle every time)
++
++– Questions will appear in random order
++– Options will also randomize
++Categories / Difficulty
++
++– Users can choose topics (e.g., Science,  Math, History)
++Score System
++
++– Track correct answers
++– Show final score and feedback
++
++✔ Timer (optional)
++
++– Countdown per question
++Clean UI
++
++– Buttons
++– Cards
++– Progress bar
++– Show correct/incorrect answers
++This the structure of my app 
++```
++
++Generate an app logo and update the app metadata title and description.
